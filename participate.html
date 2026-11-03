@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>참여하기 | 한국에너지전환사업단사회적협동조합</title>
+<meta name="description" content="한국에너지전환사업단사회적협동조합 조합가입 신청 - 이름·생년월일·연락처를 입력하고 개인정보 수집·이용·제공에 동의하여 조합 가입을 신청하실 수 있습니다.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한국에너지전환사업단사회적협동조합">
+<meta property="og:title" content="참여 | 한국에너지전환사업단사회적협동조합">
+<meta property="og:description" content="한국에너지전환사업단사회적협동조합 조합가입 신청 페이지입니다.">
+<meta property="og:url" content="https://ketcoop.github.io/articles.html">
+<meta property="og:image" content="https://ketcoop.github.io/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 참여하기(조합가입 신청) 전용 (style.css 색상 변수 사용) */
+.form-card{
+  background:var(--paper);border:1px solid var(--steel-line);border-radius:var(--radius);
+  padding:34px 34px 30px;max-width:var(--content-w);
+}
+.field{margin-bottom:20px;}
+.field:last-of-type{margin-bottom:0;}
+.field label{
+  display:block;font-size:13px;font-weight:700;color:var(--ink);
+  letter-spacing:.02em;margin-bottom:8px;
+}
+.field label .req{color:var(--amber-deep);margin-left:3px;}
+.field input{
+  width:100%;font-family:var(--font-main);font-size:15px;color:var(--ink);
+  background:#fff;border:1px solid var(--steel-line);border-radius:var(--radius);
+  padding:12px 14px;transition:border-color .15s,box-shadow .15s;
+}
+.field input::placeholder{color:#B7BAB8;}
+.field input:focus{
+  outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,178,41,.18);
+}
+.field .hint{display:block;font-size:12px;color:var(--steel);margin-top:6px;}
+
+/* 생년월일: 한 줄(년/월/일) + 달력 선택 */
+.birth-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;position:relative;}
+.birth-row input[type="text"]{flex:none;min-width:0;text-align:center;padding:11px 6px;}
+.birth-row #f-birth-y{width:78px;}
+.birth-row #f-birth-m,.birth-row #f-birth-d{width:54px;}
+.birth-sep{font-size:14px;color:var(--steel);flex:none;}
+.birth-cal-btn{
+  flex:none;margin-left:4px;border:1px solid var(--steel-line);background:#fff;
+  border-radius:var(--radius);padding:9px 11px;font-size:15px;line-height:1;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.birth-cal-btn:hover{border-color:var(--amber);background:#FDF6E7;}
+.birth-cal-input{position:absolute;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;}
+@media (max-width:480px){ .birth-row{flex-wrap:wrap;} }
+
+.consent-box{
+  border:1px solid var(--steel-line);border-left:3px solid var(--amber);
+  background:var(--panel);border-radius:0 var(--radius) var(--radius) 0;
+  padding:24px 26px;margin-top:6px;
+}
+.consent-box h3{font-size:15.5px;color:var(--ink);margin-bottom:14px;font-family:'Noto Serif KR',serif;}
+.consent-box ol{padding-left:1.25em;margin:0 0 4px;}
+.consent-box ol li{font-size:13.5px;color:var(--ink);line-height:1.8;margin-bottom:9px;}
+.consent-box ol li:last-child{margin-bottom:0;}
+.consent-box ol li b{font-weight:700;}
+.consent-check{
+  display:flex;align-items:flex-start;gap:11px;margin-top:18px;
+  padding-top:16px;border-top:1px solid var(--steel-line);
+}
+.consent-check input{width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--amber-deep);cursor:pointer;}
+.consent-check label{font-size:14.5px;color:var(--ink);font-weight:700;cursor:pointer;line-height:1.55;}
+.consent-check label .req{color:var(--amber-deep);margin-left:3px;}
+
+.submit-row{margin-top:26px;}
+.submit-row .btn{border:none;cursor:pointer;font-size:15px;padding:14px 34px;}
+.submit-row .btn:disabled{opacity:.55;cursor:not-allowed;}
+
+.form-msg{
+  display:none;margin-top:20px;padding:16px 20px;border-radius:var(--radius);
+  font-size:14.5px;line-height:1.7;max-width:var(--content-w);
+}
+.form-msg.ok{display:block;background:#F1F8EE;border:1px solid #CBE3BF;color:#2F5A24;}
+.form-msg.err{display:block;background:#FBEFEF;border:1px solid #E6C6C6;color:#8A2B2B;}
+
+.form-lead{font-size:15.5px;color:var(--ink);line-height:1.9;max-width:var(--content-w);margin-bottom:6px;}
+
+/* 조합비 납부 안내 (동의 아래, 작게) */
+.acct-mini{
+  margin-top:18px;background:var(--panel);border:1px solid var(--steel-line);
+  border-left:3px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;
+  padding:14px 18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;
+}
+.acct-mini-label{font-size:11.5px;font-weight:700;color:var(--steel);letter-spacing:.04em;}
+.acct-mini-num{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--ink);letter-spacing:.01em;}
+.acct-mini-holder{font-size:12.5px;color:var(--steel);}
+.acct-mini-note{flex-basis:100%;font-size:11.5px;color:var(--steel);margin-top:2px;line-height:1.6;}
+</style>
+</head>
+<body id="top">
+
+<header class="header-shell">
+  <div class="nav-row">
+    <nav class="nav-left"><ul>
+      <li><a href="index.html#about">조합</a></li>
+      <li><a href="index.html#business">사업</a></li>
+      <li><a href="history.html">연혁</a></li>
+      <li><a href="articles.html">정관</a></li>
+    </ul></nav>
+    <div class="brand-spacer"></div>
+    <nav class="nav-right"><ul>
+      <li><a href="disclosure.html">공시</a></li>
+      <li><a href="participate.html" class="active">참여</a></li>
+      <li><a href="donate.html">후원</a></li>
+      <li><a href="index.html#report">신고</a></li>
+    </ul></nav>
+  </div>
+  <div class="wave-wrap">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
+      <path d="M0,0 L1440,0 L1440,9 C1150,9 1120,58 720,58 C320,58 290,9 0,9 Z" fill="var(--paper)"/>
+      <path d="M0,9 C290,9 320,58 720,58 C1120,58 1150,9 1440,9" fill="none" stroke="var(--amber)" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="brand-tab">
+    <a href="index.html"><span class="bn">한국에너지전환사업단<br>사회적협동조합</span></a>
+    <span class="bs">SINCE 2022</span>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Join</span>
+    <h1>참여하기</h1>
+    <p>한국에너지전환사업단사회적협동조합은 뜻을 함께하는 조합원을 기다립니다. 아래 신청서를 작성해 주시면 확인 후 가입 절차를 안내해 드립니다.</p>
+    <div class="hero-meta">
+      <div>가입 대상<strong>취지에 동의하는 누구나</strong></div>
+      <div>처리 절차<strong>신청 → 확인 → 가입 안내</strong></div>
+      <div>가입 문의<strong>urisolarbk@naver.com</strong></div>
+      
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Application</span>
+      <h2>조합가입 신청서</h2>
+      <p>아래 항목을 입력하고 개인정보 수집·이용·제공에 동의하신 후 신청해 주세요.</p>
+    </div>
+
+    <p class="form-lead">가입 신청은 접수 확인 및 조합원 자격 검토를 위한 것이며, 최종 가입 여부는 조합의 확인 절차를 거쳐 결정됩니다.</p>
+
+    <div class="form-card">
+      <div class="field">
+        <label for="f-name">이름<span class="req">*</span></label>
+        <input type="text" id="f-name" name="name" placeholder="예: 홍길동" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label>생년월일<span class="req">*</span></label>
+        <div class="birth-row">
+          <input type="text" id="f-birth-y" inputmode="numeric" placeholder="1990" aria-label="생년(4자리)">
+          <span class="birth-sep">년</span>
+          <input type="text" id="f-birth-m" inputmode="numeric" placeholder="월" aria-label="월">
+          <span class="birth-sep">월</span>
+          <input type="text" id="f-birth-d" inputmode="numeric" placeholder="일" aria-label="일">
+          <span class="birth-sep">일</span>
+          <button type="button" id="birthCalBtn" class="birth-cal-btn" title="달력에서 선택">📅</button>
+          <input type="date" id="f-birth-cal" class="birth-cal-input" tabindex="-1" aria-label="달력에서 생년월일 선택">
+        </div>
+        <span class="hint">직접 입력하거나 달력(📅)에서 선택할 수 있습니다.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-email">이메일<span class="req">*</span></label>
+        <input type="email" id="f-email" name="email" placeholder="예: name@example.com" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label for="f-phone">휴대전화<span class="req">*</span></label>
+        <input type="tel" id="f-phone" name="phone" placeholder="예: 010-1234-5678" autocomplete="tel" required>
+      </div>
+
+      <div class="field">
+        <label for="f-address">주소<span class="req">*</span></label>
+        <input type="text" id="f-address" name="address" placeholder="예: 부산광역시 사하구 하신중앙로 180, 103동 1302호" autocomplete="street-address" required>
+      </div>
+
+      <div class="consent-box">
+        <h3>개인정보 수집·이용·제공에 관한 동의서</h3>
+        <ol>
+          <li><b>수집·이용 목적</b> — 조합가입 신청 접수 및 자격 확인, 조합원 관리·연락, 조합 운영 관련 안내</li>
+          <li><b>수집 항목</b> — 이름, 생년월일, 이메일, 휴대전화, 주소</li>
+          <li><b>보유·이용 기간</b> — 조합원 자격 유지 기간 동안 보유하며, 관계 법령에 보존기간이 정해진 경우 그 기간까지 보관합니다. 가입이 승인되지 않은 경우 지체 없이 파기합니다.</li>
+          <li><b>제3자 제공</b> — 수집한 개인정보는 원칙적으로 제3자에게 제공하지 않습니다. 다만, 법령에 특별한 규정이 있거나 정보주체 본인이 동의한 경우에 한하여 제공될 수 있습니다.</li>
+          <li><b>동의 거부 권리 및 불이익</b> — 귀하는 개인정보 수집·이용·제공에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부하실 경우 조합가입 신청의 접수 및 처리가 제한될 수 있습니다.</li>
+        </ol>
+        <div class="consent-check">
+          <input type="checkbox" id="f-consent" name="consent">
+          <label for="f-consent">위 개인정보 수집·이용·제공에 관한 내용을 확인하였으며 이에 동의합니다.<span class="req">(필수)</span></label>
+        </div>
+      </div>
+
+      <div class="acct-mini">
+        <span class="acct-mini-label">출자금 납부 계좌 (1좌 10,000원)</span>
+        <span class="acct-mini-num">신협 131-023-058091</span>
+        <span class="acct-mini-holder">예금주 한국에너지전환사업단사회적협동조합</span>
+        <span class="acct-mini-note">※ 가입 신청 후 가입 통지를 받은 뒤 위 계좌로 출자금을 납부해 주세요. 입금자명은 신청자 본인 성명으로 기재해 주세요.</span>
+      </div>
+
+      <div class="submit-row">
+        <button type="button" class="btn btn-primary" id="submitBtn">가입 신청하기</button>
+      </div>
+
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <strong>한국에너지전환사업단사회적협동조합</strong>
+      부산광역시 사하구 하신중앙로 180, 103동 1302호<br>
+      사업자등록번호 331-82-00633
+    </div>
+    <div>
+      <strong>가입 문의</strong>
+      이메일 urisolarbk@naver.com<br>
+      이사장 김대오
+    </div>
+  </div>
+  <div class="wrap legal">
+    &copy; 2026 한국에너지전환사업단사회적협동조합. 입력하신 개인정보는 조합가입 신청 처리 목적으로만 이용됩니다.
+  </div>
+</footer>
+
+<script>
+/* ───────────────────────────────────────────────────────────
+   조합가입 신청서 → 구글 시트 연동
+   ─────────────────────────────────────────────────────────── */
+const SCRIPT_URL = "";  // 사협용 구글 시트 연결 전: 비워 두면 이메일 신청 안내
+
+const btn = document.getElementById("submitBtn");
+const msg = document.getElementById("formMsg");
+
+const by = document.getElementById("f-birth-y");
+const bm = document.getElementById("f-birth-m");
+const bd = document.getElementById("f-birth-d");
+
+// 숫자만·자릿수 제한 입력 처리
+function digitsOnly(el, maxLen){
+  el.addEventListener("input", function(){
+    el.value = el.value.replace(/\D/g, "").slice(0, maxLen);
+  });
+}
+digitsOnly(by, 4);
+digitsOnly(bm, 2);
+digitsOnly(bd, 2);
+
+// 달력 선택 → 년/월/일 칸 자동 채움
+const cal = document.getElementById("f-birth-cal");
+const calBtn = document.getElementById("birthCalBtn");
+calBtn.addEventListener("click", function(){
+  if (typeof cal.showPicker === "function"){
+    try { cal.showPicker(); return; } catch (e) {}
+  }
+  cal.focus(); cal.click();
+});
+cal.addEventListener("change", function(){
+  if(!cal.value) return;
+  const parts = cal.value.split("-"); // YYYY-MM-DD
+  by.value = parts[0];
+  bm.value = String(parseInt(parts[1], 10));
+  bd.value = String(parseInt(parts[2], 10));
+});
+
+function show(type, text){
+  msg.className = "form-msg " + type;
+  msg.textContent = text;
+  msg.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+btn.addEventListener("click", function(){
+  const yStr = by.value.trim();
+  const mStr = bm.value.trim();
+  const dStr = bd.value.trim();
+
+  const data = {
+    name:    document.getElementById("f-name").value.trim(),
+    email:   document.getElementById("f-email").value.trim(),
+    phone:   document.getElementById("f-phone").value.trim(),
+    address: document.getElementById("f-address").value.trim(),
+    consent: document.getElementById("f-consent").checked ? "동의" : ""
+  };
+
+  // 필수 검증 (생년월일 제외 항목)
+  if(!data.name || !data.email || !data.phone || !data.address){
+    show("err", "필수 항목(이름·이메일·휴대전화·주소)을 모두 입력해 주세요.");
+    return;
+  }
+
+  // 생년월일 검증
+  if(!yStr || !mStr || !dStr){
+    show("err", "생년월일(년·월·일)을 모두 입력해 주세요.");
+    return;
+  }
+  const y = parseInt(yStr, 10), m = parseInt(mStr, 10), d = parseInt(dStr, 10);
+  const nowY = new Date().getFullYear();
+  if(yStr.length !== 4 || y < 1900 || y > nowY){
+    show("err", "생년은 1900~" + nowY + " 사이의 4자리로 입력해 주세요.");
+    return;
+  }
+  if(m < 1 || m > 12){
+    show("err", "월은 1~12 사이로 입력해 주세요.");
+    return;
+  }
+  if(d < 1 || d > 31){
+    show("err", "일은 1~31 사이로 입력해 주세요.");
+    return;
+  }
+  data.birth = y + "-" + String(m).padStart(2,"0") + "-" + String(d).padStart(2,"0");
+
+  // 동의 검증
+  if(!data.consent){
+    show("err", "개인정보 수집·이용·제공에 동의하셔야 신청이 가능합니다.");
+    return;
+  }
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+  if(!emailOk){
+    show("err", "이메일 형식을 확인해 주세요.");
+    return;
+  }
+
+  if(!SCRIPT_URL){
+    show("err", "현재 온라인 접수가 준비 중입니다. 이메일 urisolarbk@naver.com 으로 신청해 주세요.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "전송 중…";
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: new URLSearchParams(data)
+  })
+  .then(function(){
+    show("ok", "가입 신청이 정상적으로 접수되었습니다. 확인 후 안내드리겠습니다. 감사합니다.");
+    ["f-name","f-email","f-phone","f-address"].forEach(function(id){ document.getElementById(id).value=""; });
+    by.value=""; bm.value=""; bd.value="";
+    document.getElementById("f-consent").checked = false;
+    btn.textContent = "가입 신청하기";
+    btn.disabled = false;
+  })
+  .catch(function(){
+    show("err", "전송 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 urisolarbk@naver.com 으로 문의해 주세요.");
+    btn.textContent = "가입 신청하기";
+    btn.disabled = false;
+  });
+});
+</script>
+
+</body>
+</html>

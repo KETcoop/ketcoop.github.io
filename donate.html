@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>후원하기 | 한국에너지전환사업단사회적협동조합</title>
+<meta name="description" content="한국에너지전환사업단사회적협동조합 후원 안내 - 후원계좌, 후원 절차, 기부금영수증 안내를 확인하실 수 있습니다.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한국에너지전환사업단사회적협동조합">
+<meta property="og:title" content="후원 | 한국에너지전환사업단사회적협동조합">
+<meta property="og:description" content="한국에너지전환사업단사회적협동조합 후원 페이지입니다.">
+<meta property="og:url" content="https://ketcoop.github.io/articles.html">
+<meta property="og:image" content="https://ketcoop.github.io/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 후원하기 전용 (style.css 색상 변수 사용) */
+.acct{
+  background:var(--panel);border:1px solid var(--steel-line);border-radius:var(--radius);
+  padding:30px 32px;max-width:var(--content-w);
+}
+.acct .acct-label{font-size:12px;color:var(--steel);letter-spacing:.06em;margin-bottom:8px;font-weight:700;}
+.acct .acct-num{font-family:'Noto Serif KR',serif;font-size:clamp(22px,4vw,28px);font-weight:900;color:var(--ink);letter-spacing:.01em;}
+.acct .acct-holder{margin-top:10px;font-size:14.5px;color:var(--steel);}
+.acct .acct-holder b{color:var(--ink);font-weight:700;}
+
+.donate-steps{list-style:none;counter-reset:s;margin-top:10px;}
+.donate-steps li{
+  counter-increment:s;position:relative;padding:16px 0 16px 52px;
+  border-top:1px solid var(--steel-line);font-size:14.5px;color:var(--ink);line-height:1.75;
+}
+.donate-steps li:first-child{border-top:none;}
+.donate-steps li::before{
+  content:counter(s);position:absolute;left:0;top:16px;
+  width:32px;height:32px;border-radius:50%;background:var(--amber);color:#1F1904;
+  font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+}
+.donate-steps li b{font-weight:700;}
+.donate-steps li span{display:block;color:var(--steel);font-size:13.5px;margin-top:3px;}
+
+.notice{
+  border:1px solid var(--steel-line);border-left:3px solid var(--amber);
+  background:var(--panel);border-radius:0 var(--radius) var(--radius) 0;
+  padding:24px 26px;max-width:var(--content-w);
+}
+.notice h3{font-size:16px;color:var(--ink);margin-bottom:14px;font-family:'Noto Serif KR',serif;}
+.notice ol{padding-left:1.3em;margin:0;}
+.notice ol li{font-size:14px;color:var(--ink);line-height:1.8;margin-bottom:10px;}
+.notice ol li:last-child{margin-bottom:0;}
+.notice ol li b{font-weight:700;}
+.notice .sub{color:var(--steel);font-size:13.5px;}
+
+.info-table{
+  width:100%;border-collapse:collapse;background:var(--paper);
+  border:1px solid var(--steel-line);max-width:var(--content-w);
+}
+.info-table th,.info-table td{
+  padding:14px 20px;text-align:left;font-size:14px;
+  border-bottom:1px solid var(--steel-line);vertical-align:top;
+}
+.info-table tr:last-child th,.info-table tr:last-child td{border-bottom:none;}
+.info-table th{
+  background:var(--panel);font-size:12.5px;letter-spacing:.04em;color:var(--steel);
+  font-weight:700;width:130px;white-space:nowrap;
+}
+.info-table td b{color:var(--ink);}
+.info-table td .sub{display:block;color:var(--steel);font-size:12.5px;margin-top:3px;}
+
+.receipt-box{
+  background:var(--panel);border:1px solid var(--steel-line);border-radius:var(--radius);
+  padding:26px 30px;max-width:var(--content-w);
+}
+.receipt-box p{font-size:14.5px;color:var(--ink);line-height:1.85;margin-bottom:12px;}
+.receipt-box p:last-child{margin-bottom:0;}
+.receipt-box .tag{
+  display:inline-block;font-size:12px;font-weight:700;color:var(--steel);
+  background:#fff;border:1px solid var(--steel-line);padding:5px 13px;border-radius:var(--radius);margin-bottom:14px;
+}
+.lead{font-size:15.5px;color:var(--ink);line-height:1.9;max-width:var(--content-w);}
+.lead + .lead{margin-top:14px;}
+</style>
+</head>
+<body id="top">
+
+<header class="header-shell">
+  <div class="nav-row">
+    <nav class="nav-left"><ul>
+      <li><a href="index.html#about">조합</a></li>
+      <li><a href="index.html#business">사업</a></li>
+      <li><a href="history.html">연혁</a></li>
+      <li><a href="articles.html">정관</a></li>
+    </ul></nav>
+    <div class="brand-spacer"></div>
+    <nav class="nav-right"><ul>
+      <li><a href="disclosure.html">공시</a></li>
+      <li><a href="participate.html">참여</a></li>
+      <li><a href="donate.html" class="active">후원</a></li>
+      <li><a href="index.html#report">신고</a></li>
+    </ul></nav>
+  </div>
+  <div class="wave-wrap">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
+      <path d="M0,0 L1440,0 L1440,9 C1150,9 1120,58 720,58 C320,58 290,9 0,9 Z" fill="var(--paper)"/>
+      <path d="M0,9 C290,9 320,58 720,58 C1120,58 1150,9 1440,9" fill="none" stroke="var(--amber)" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="brand-tab">
+    <a href="index.html"><span class="bn">한국에너지전환사업단<br>사회적협동조합</span></a>
+    <span class="bs">SINCE 2022</span>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Support</span>
+    <h1>후원하기</h1>
+    <p>여러분의 후원은 시민이 함께 만드는 재생에너지와 에너지복지를 이어가는 든든한 힘이 됩니다.</p>
+    <div class="hero-meta">
+      <div>후원계좌<strong>신협 131-023-058091</strong></div>
+      <div>예금주<strong>한국에너지전환사업단사회적협동조합</strong></div>
+      <div>후원 문의<strong>urisolarbk@naver.com</strong></div>
+      <div>영수증<strong>지정 후 발급 예정</strong></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why</span>
+      <h2>후원이 만드는 변화</h2>
+    </div>
+    <p class="lead">한국에너지전환사업단사회적협동조합은 시민주도 방식의 지역 에너지자립을 실현하고, 재생에너지 보급과 에너지복지로 취약계층에게 사회서비스를 제공합니다.</p>
+    <p class="lead">여러분의 후원금은 정관에 정한 공익 목적사업 — 재생에너지 발전, 에너지복지, 조합원 교육·정보 제공 — 에 사용됩니다. 작은 후원이 지역의 햇빛 발전소와 에너지복지로 이어집니다.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Account</span>
+      <h2>후원 계좌 및 방법</h2>
+      <p>아래 계좌로 후원해 주시고, 기부금영수증을 원하시면 인적사항을 알려주세요.</p>
+    </div>
+
+    <div class="acct">
+      <div class="acct-label">후원계좌</div>
+      <div class="acct-num">신협 131-023-058091</div>
+      <div class="acct-holder">예금주 · <b>한국에너지전환사업단사회적협동조합</b></div>
+    </div>
+
+    <ol class="donate-steps" style="max-width:var(--content-w);margin-top:24px;">
+      <li><b>후원 계좌로 이체</b><span>일시 후원 또는 정기(매월) 후원 모두 가능합니다.</span></li>
+      <li><b>후원자 인적사항 전달</b><span>기부금영수증 발급을 원하시면 이메일 urisolarbk@naver.com 으로 성명·연락처 등을 알려주세요.</span></li>
+      <li><b>접수 확인 및 영수증 안내</b><span>후원금 접수를 확인해 드리며, 기부금영수증은 아래 안내에 따라 발급됩니다.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Notice</span>
+      <h2>후원 시 안내사항</h2>
+      <p>후원에 앞서 아래 내용을 반드시 확인해 주세요.</p>
+    </div>
+
+    <div class="notice">
+      <h3>후원자 고지사항</h3>
+      <ol>
+        <li><b>후원금의 사용</b> — 후원금은 조합 정관에서 정한 공익 목적사업에 사용되며, 그 결과는 홈페이지 <a href="disclosure.html" style="color:var(--amber-deep);font-weight:700;">공익 공시</a> 페이지를 통해 공개됩니다.</li>
+        <li><b>기부금영수증(세액공제)</b> — 세액공제용 기부금영수증은 조합이 <b>공익법인등(지정기부금단체)으로 지정된 이후</b> 발급이 가능합니다. 현재 지정 절차가 진행 중이며, 지정 완료 전 후원분에 대한 소급 발급 가능 여부는 문의처로 확인해 주세요.</li>
+        <li><b>개인정보 수집·이용 동의</b> — 아래 표의 항목을 후원금 접수 확인 및 기부금영수증 발급 목적으로 수집·이용합니다. 관계 법령(소득세법·법인세법 등)에 따른 보관기간 동안 보관하며, 동의를 거부하실 수 있으나 이 경우 기부금영수증 발급이 제한될 수 있습니다.</li>
+        <li><b>환불 안내</b> — 접수·집행된 후원금은 원칙적으로 환불되지 않습니다. 착오 송금 등은 문의처로 연락해 주세요.</li>
+        <li><b>후원 문의</b> — 이메일 urisolarbk@naver.com</li>
+      </ol>
+    </div>
+
+    <div class="section-head" style="margin-top:44px;margin-bottom:20px;">
+      <h2 style="font-size:20px;">기부금영수증 발급 시 받는 인적사항</h2>
+    </div>
+    <table class="info-table">
+      <tr><th>성명(단체명)</th><td><b>개인 성명</b> 또는 단체명</td></tr>
+      <tr><th>고유식별정보</th><td><b>주민등록번호</b> 또는 <b>휴대전화번호</b><span class="sub">전자기부금영수증은 동의 시 휴대전화번호로도 발급 가능합니다.</span></td></tr>
+      <tr><th>주소</th><td>영수증 기재용 주소</td></tr>
+      <tr><th>연락처·이메일</th><td>접수 확인 및 영수증 발송용</td></tr>
+      <tr><th>후원 내역</th><td>기부금액 · 기부일자</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Receipt</span>
+      <h2>기부금영수증 자동발급 안내</h2>
+    </div>
+    <div class="receipt-box">
+      <span class="tag">전자기부금영수증 (국세청 홈택스)</span>
+      <p>조합이 공익법인등(지정기부금단체)으로 지정되면, 국세청 홈택스의 <b>전자기부금영수증</b> 제도를 통해 후원자에게 영수증을 전자로 발급할 수 있습니다.</p>
+      <p>전자기부금영수증을 발급하면 후원자의 <b>연말정산 간소화 서비스에 자동 반영</b>되어, 후원자가 별도로 영수증을 제출하지 않아도 공제를 받을 수 있습니다. 조합도 발급명세 등 법정서식의 작성·보관·제출 의무가 면제됩니다.</p>
+      <p>정기 후원의 완전 자동화(자동출금·자동영수증)를 원하실 경우, 별도의 기부관리 플랫폼을 홈택스와 연동하여 운영할 수 있습니다. 도입 시기와 방식은 지정 완료 후 별도 안내드립니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <strong>한국에너지전환사업단사회적협동조합</strong>
+      부산광역시 사하구 하신중앙로 180, 103동 1302호<br>
+      사업자등록번호 331-82-00633
+    </div>
+    <div>
+      <strong>후원 문의</strong>
+      이메일 urisolarbk@naver.com<br>
+      이사장 김대오
+    </div>
+  </div>
+  <div class="wrap legal">
+    &copy; 2026 한국에너지전환사업단사회적협동조합. 후원금은 정관에서 정한 공익 목적사업에 사용됩니다.
+  </div>
+</footer>
+
+</body>
+</html>
