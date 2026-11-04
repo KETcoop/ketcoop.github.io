@@ -357,7 +357,8 @@ footer strong{color:var(--ink);font-family:var(--font-serif);font-size:15px;disp
 footer .legal{margin-top:28px;font-size:12px;color:var(--steel);border-top:1px solid var(--steel-line);padding-top:18px;}
 
 /* ---------- 첫 화면: 남색·주황 반반 (국민솔라 디자인 차용) ---------- */
-.split-hero{display:grid;grid-template-columns:1fr 1fr;min-height:380px;position:relative;}
+.split-hero{display:grid;grid-template-columns:1fr 1fr;min-height:380px;position:relative;
+  max-width:calc(1000px - 56px);margin:0 auto;} /* 아래 공지·자주 찾는 메뉴(.home-grid) 내용 폭에 맞춤 */
 .split-hero .half{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 24px;gap:26px;}
 .split-hero .left{background:linear-gradient(180deg,rgba(15,35,64,.92),rgba(15,35,64,.98)),radial-gradient(circle at 30% 80%,#3a5a80,transparent 60%);color:#fff;}
 .split-hero .right{background:linear-gradient(160deg,#FF8A4F,#FF6A2B);color:#2B2B2B;}
@@ -387,7 +388,7 @@ footer .legal{margin-top:28px;font-size:12px;color:var(--steel);border-top:1px s
 .quick-grid a.dark{background:var(--navy);color:#fff;border-color:var(--navy);}
 .quick-grid a .ic{font-size:22px;}
 @media (max-width:760px){
-  .split-hero{grid-template-columns:1fr;}
+  .split-hero{grid-template-columns:1fr;margin:0 16px;}
   .split-hero h1{font-size:28px;}
   .split-hero .badge{display:none;}
   .home-grid{grid-template-columns:1fr;padding:32px 16px;}
